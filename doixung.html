@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rwed</title>
+</head>
+<body>
+<script>
+    function isPalindrome(s){
+        if (s===''){
+            return  true
+        }
+        let arr=s.split('')
+        let last=arr.length-1,
+            first=0
+            if (arr[first] !== arr[last] && arr.length>1 ) {
+                return false
+            }else{
+                arr.pop()
+                arr.shift()
+                s=arr.join('')
+                isPalindrome(s)
+            }
+        return true
+    }
+    let inp=prompt('nhap chuoi')
+    document.write(isPalindrome(inp))
+
+</script>
+</body>
+</html>

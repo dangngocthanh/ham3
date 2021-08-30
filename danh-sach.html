@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rwed</title>
+    <style>
+        button{
+            background-color: green;
+            color: aliceblue;
+        }
+        tr:nth-child(odd){
+            background-color: darkgray;
+        }
+        #de{
+            background-color: white;
+        }
+        #total{
+            color: crimson;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+<h2>Add New Product</h2>
+<table width="100%">
+    <tr>
+        <td colspan="2" width="40%"><input type="text" id="inp" placeholder="New Product">
+            <button onclick="AddNew()">Add</button>
+        </td>
+        <td>
+            <input type="hidden">
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3"><h2>Display All Product</h2></td>
+    </tr>
+    <tr id="de">
+        <td colspan="2">Product Name</td>
+        <td colspan="1" id="total">0 product</td>
+    </tr>
+</table>
+<div id="out">
+
+</div>
+    <script>
+        let arr=[],
+        total=0
+       function AddNew(){
+          let NewProduct = document.getElementById('inp').value
+           arr.push(NewProduct)
+           total++
+           OutProduct(arr)
+       }
+       function OutProduct(arr){
+           let out='<table id="tab" width="100%">'
+         for (let i=0;i<arr.length;i++){
+            out+='<tr>' +
+                '<td>'+arr[i]+'</td>' +
+                '<td><button id="'+i+'" onclick="Edit(this.id)"'+'>Edit</button></td>' +
+                '<td><button id="'+i+'" onclick="Delete(this.id)">Delete</button></td>' +
+                '</tr>'
+         }out+='</table>'
+           document.getElementById('inp').value=''
+         document.getElementById('out').innerHTML=out
+         document.getElementById('total').innerHTML= arr.length +' product'
+       }
+       function Edit(x){
+            arr[x]=prompt()
+            OutProduct(arr)
+       }
+        function Delete(x){
+            for (x;x<arr.length;x++){
+                arr[x]=arr[x+1]
+            }arr.pop()
+           OutProduct(arr)
+        }
+
+    </script>
+
+
+</body>
+</html>
